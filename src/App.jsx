@@ -38,14 +38,18 @@ function App() {
         </button>
       </div>
       <div style={{ overflow: "hidden" }}>
-        <MediaPlayer
-          src={currentVideo}
-          isVideoVisible={isVideoVisible}
-          toggleVisibilityHandler={() => {
-            setIsVideoVisible(!isVideoVisible);
-          }}
-        />
+        <section style={{ position: "relative" }}>
+          <MediaPlayer src={currentVideo} isVideoVisible={isVideoVisible} />
+        </section>
       </div>
+      <button
+        style={{ marginTop: 24 }}
+        onClick={() => {
+          setIsVideoVisible(!isVideoVisible);
+        }}
+      >
+        {!isVideoVisible ? "Reveal video" : "Hide video"}
+      </button>
     </main>
   );
 }
