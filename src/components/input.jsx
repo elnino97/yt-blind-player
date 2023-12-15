@@ -1,7 +1,7 @@
 export const Input = ({ inputEventHandler, value }) => {
   return (
-    <div>
-      <label htmlFor="media-input" style={{ marginRight: 8 }}>
+    <>
+      <label htmlFor="media-input" style={{ marginBottom: 8 }}>
         Insert YouTube link
       </label>
       <input
@@ -10,7 +10,14 @@ export const Input = ({ inputEventHandler, value }) => {
         id="media-input"
         name="media-input"
         value={value}
+        style={{
+          fontSize: 14,
+          height: 32,
+          borderRadius: 8,
+          backgroundColor: "white",
+          color: "black",
+        }}
       />
-    </div>
+    </>
   );
 };

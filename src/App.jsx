@@ -11,20 +11,12 @@ function App() {
 
   return (
     <main>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          marginBottom: 24,
-        }}
-      >
+      <section style={{ display: "flex", flexDirection: "column" }}>
         <Input
           inputEventHandler={(e) => setInputValue(e.target.value)}
           value={inputValue}
         />
         <button
-          style={{ marginLeft: 8 }}
           onClick={() => {
             setCurrentVideo(
               `https://www.youtube.com/embed/${getYouTubeVideoId(
@@ -33,40 +25,51 @@ function App() {
             );
             setIsVideoVisible(false);
           }}
+          style={{ marginTop: 8, marginBottom: 8 }}
         >
           Play
         </button>
-      </div>
-      <div style={{ overflow: "hidden", position: "relative" }}>
-        <section>
-          <MediaPlayer src={currentVideo} />
-        </section>
-        {!isVideoVisible && (
-          <div
-            style={{
-              width: 500,
-              height: 493,
-              backgroundColor: "black",
-              top: -36,
-              right: 2,
-              position: "absolute",
+      </section>
+      {currentVideo && (
+        <>
+          <div style={{ overflow: "hidden", position: "relative" }}>
+            <section>
+              <MediaPlayer src={currentVideo} />
+            </section>
+            {!isVideoVisible && (
+              <div
+                style={{
+                  width: 500,
+                  height: 450,
+                  backgroundColor: "black",
+                  top: 2,
+                  right: 2,
+                  position: "absolute",
+                }}
+              >
+                <p
+                  style={{ color: "white", fontSize: 64, textAlign: "center" }}
+                >
+                  HIDDEN
+                </p>
+                <p
+                  style={{ color: "white", fontSize: 24, textAlign: "center" }}
+                >
+                  Hover lower for media controls
+                </p>
+              </div>
+            )}
+          </div>
+          <button
+            style={{ marginTop: 24 }}
+            onClick={() => {
+              setIsVideoVisible(!isVideoVisible);
             }}
           >
-            <p style={{ color: "white", fontSize: 64 }}>HIDDEN</p>
-            <p style={{ color: "white", fontSize: 24 }}>
-              Use media controls below this text
-            </p>
-          </div>
-        )}
-      </div>
-      <button
-        style={{ marginTop: 24 }}
-        onClick={() => {
-          setIsVideoVisible(!isVideoVisible);
-        }}
-      >
-        {!isVideoVisible ? "Reveal video" : "Hide video"}
-      </button>
+            {!isVideoVisible ? "Reveal video" : "Hide video"}
+          </button>
+        </>
+      )}
     </main>
   );
 }
